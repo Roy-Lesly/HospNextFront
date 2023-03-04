@@ -1,0 +1,5 @@
+export const tokenName = "emr-token"
+export const userName = "emr-user"
+export const userRole = "emr-role"
+export const userDept = "emr-dept"
+export const userIsAdmin = "is_admin"
