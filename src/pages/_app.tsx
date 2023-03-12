@@ -1,5 +1,5 @@
 import '@/styles/globals.css'
-// import StoreProvider from '@/Utils/store'
+import StoreProvider from '@/Utils/store'
 import { store } from '@/Redux/store';
 import { Provider } from 'react-redux';
 // import 'antd/dist/antd.css'
@@ -15,7 +15,7 @@ import RadiXrayLayout from '@/Components/Radi/RadiXrayLayout';
 const App = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
   
-  return <Provider store={store}>
+  return <StoreProvider>
     <>
       {router.pathname.startsWith('/Administration') ? (
         <AdminLayout>
@@ -37,7 +37,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         <Component {...pageProps} />
       )}
     </>
-  </Provider>
+  </StoreProvider>
 }
 
 export default App;

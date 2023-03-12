@@ -16,7 +16,7 @@ const RadiXrayLayout = ({children}: any) => {
   const [userRole, setUserRole] = useState(null)
   const [userIsAdmin, setUserIsAdmin] = useState(false)
   useIsLoggedIn({
-    successCallBack: (username, dept_name, userrole, is_admin) => {
+    successCallBack: (username: any, dept_name: any, userrole: any, is_admin: any) => {
       setUserName(username);
       setDeptName(dept_name);
       setUserRole(userrole);

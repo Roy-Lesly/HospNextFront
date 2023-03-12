@@ -9,20 +9,21 @@ interface GlobalFilterProps {
 
 const GlobalFilter: FC<GlobalFilterProps> = ({ filter, setFilter }) => {
   const [value, setValue] = useState(filter)
-  const onChange = useAsyncDebounce(value => {
-    setFilter(value || undefined)
-  }, 1000)
+  // const onChange = useAsyncDebounce((value): any => {
+  //   setFilter(value || undefined)
+  // }, 1000)
+
   return (
-    <div className=''>
+    <div className='m-1'>
       <span className='mr-2'>Search :</span>
         <input
           className='border-violet-800 border-2 rounded'
           placeholder=' Enter Search Here ...'
           value={value || ''}
-          onChange={e => {
-            setValue(e.target.value);
-            onChange(e.target.value);
-          }}
+          // onChange={e => {
+          //   setValue(e.target.value);
+          //   onChange(e.target.value);
+          // }}
         />
     </div>
   )

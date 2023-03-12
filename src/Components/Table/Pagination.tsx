@@ -24,9 +24,9 @@ const Pagination: FC<PaginationProps> = ({ previousPage, nextPage, pageIndex,
       }, [])
       
   return (
-    <div className='text-xl mt-2'>
+    <div className='text-md mt-2'>
         {pageSize && <select value={pageSize} onChange={e => setPageSize(Number(e.target.value))}
-          className='mr-3 font-xl bg-blue-200 rounded'
+          className='font-xl bg-blue-900 rounded p-1 px-2'
         >
           {
             [15, 25, 50, 100].map(pageSize => (
@@ -34,19 +34,21 @@ const Pagination: FC<PaginationProps> = ({ previousPage, nextPage, pageIndex,
             ))
           }
         </select>}
-        <span>Page {'  '} <strong>{pageIndex + 1} of {pageOptions.length}</strong>{'  '}
+        <span className='bg-gray-700 ml-2 mr-2 p-1 px-4 rounded-lg'>Page {'  '} <strong>{pageIndex + 1} of {pageOptions.length}</strong>{'  '}
         </span>
         {/* <MyButton ButtonName='Prev' ButtonType="click" onClick={() => previousPage()} disabled={!canPreviousPage} /> */}
-        <ReactiveButton className='font-bold m-1'
+        <ReactiveButton className='font-bold'
             idleText="PREV"
-            style={{background: "brown"}}
+            style={{background: "brown", borderRadius: "6px"}}
+            size={"tiny"}
             onClick={() => previousPage()} disabled={!canPreviousPage}
         />
 
-        <ReactiveButton className='font-bold m-1'
+        <ReactiveButton className='font-bold'
             idleText="NEXT"
-            style={{background: "green"}}
+            style={{background: "green", borderRadius: "6px"}}
             onClick={() => nextPage()} disabled={!canNextPage}
+            size={"tiny"}
         />
       
         {/* <button onClick={() => nextPage()} disabled={!canNextPage}>Next</button> */}

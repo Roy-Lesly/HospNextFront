@@ -1,24 +1,49 @@
 import React, { useState } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
-import { Form, Input, Button, Radio, Select, Cascader, DatePicker, InputNumber, TreeSelect, Checkbox, Upload, Switch} from 'antd';
+import { notification, Form, Input, Button, Radio, Select, Cascader, DatePicker, InputNumber, TreeSelect, Checkbox, Upload, Switch} from 'antd';
 import { AccountUrl } from '@/Utils/Config';
 import axios from 'axios';
+import { axiosRequest } from '@/Utils/functions';
 
 
 const NewAccount: React.FC = () => {
 
   const [role, setRole] = useState(false)
+  const [fetching, setFetching] = useState(false)
 
-  const onCreateAccount = async (value: object) => {
-    console.log(value);
-    const response = await axios({
-      method: "post",
-      url: AccountUrl,
-      data: value,
-      headers: { "Content-Type": "multipart/form-data"}
-    });
-    console.log(response)
-  };
+  // const onCreateAccount = async (value: object) => {
+  //   console.log(value);
+  //   const response = await axios({
+  //     method: "post",
+  //     url: AccountUrl,
+  //     data: value,
+  //     headers: { "Content-Type": "multipart/form-data"}
+  //   });
+  //   console.log(response)
+  // }
+
+  const onCreateAccount = async (values: any) => {
+    setFetching(true)
+    console.log(values)
+
+    const response = await axiosRequest({
+        method: "post",
+        url: AccountUrl,
+        payload: values,
+        hasAuth: true,
+    })
+
+    setFetching(false)
+    if (response) {
+        console.log(response)
+        notification.success({
+            message: "Operation Successful",
+            description: "Account Created Successfully"
+        })
+        // onSuccessCallBack()
+        // form.resetFields();
+    }
+}
 
 
 

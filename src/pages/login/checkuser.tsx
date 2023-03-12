@@ -13,7 +13,6 @@ interface CheckUserProps {
     user_id: number
 }
 
-
 const CheckUser: FC = () => {
     const router = useRouter()
 
@@ -27,8 +26,7 @@ const CheckUser: FC = () => {
 
     const onSubmit = async (values: DataProps) => {
         setLoading(true)
-        console.log(values)
-        const response = await axiosRequest<CheckUserProps>({
+        const response = await axiosRequest({
             method: 'post',
             url: LoginUrl,
             payload: { ...values, is_new_user: true }
@@ -43,7 +41,7 @@ const CheckUser: FC = () => {
                 message: "User Has No Password",
                 description: "CREATE PASSWORD",
             })
-            router.push('/login/updateuser')
+            router.push({ pathname: "/login/updateuser", })
         }
         setLoading(false)
     }

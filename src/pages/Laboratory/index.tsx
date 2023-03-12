@@ -1,11 +1,12 @@
-import Layout2 from '@/Components/Layout2'
+import Layout2 from '@/Components/Layout'
 import React from 'react'
 
 const Laboratory = () => {
   return (
-    <Layout2>
-        <h1>LAYOUT2</h1>
-    </Layout2>
+    <></>
+    // <Layout>
+    //     <h1>LAYOUT2</h1>
+    // </Layout>
   )
 }
 

@@ -68,7 +68,6 @@ const NewPatient: React.FC = () => {
         <Form.Item 
           label="Date Of Birth"
           name="dob"
-          for
           rules={[{required: true, message: "Select Date of Birth"}]}
         >
           <DatePicker />

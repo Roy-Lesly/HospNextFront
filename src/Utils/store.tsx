@@ -17,6 +17,7 @@ const appReducer = (state: StoreProps, action: ActionProps): StoreProps => {
     }
 
     if (action.type === ActionTypes.UPDATE_USER_PASSWORD) {
+        console.log("Update user in store", action.payload)
         return {
             ...state,
             updatePasswordUserId: action.payload

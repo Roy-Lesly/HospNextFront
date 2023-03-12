@@ -15,8 +15,12 @@ const AdminLayout = ({children}: any) => {
   const [deptname, setDeptName] = useState(null)
   const [userRole, setUserRole] = useState(null)
   const [userIsAdmin, setUserIsAdmin] = useState(false)
+
+  const [data, setData] = useState(false)
+
+  
   useIsLoggedIn({
-    successCallBack: (username, dept_name, userrole, is_admin) => {
+    successCallBack: (username: any, dept_name: any, userrole: any, is_admin: any) => {
       setUserName(username);
       setDeptName(dept_name);
       setUserRole(userrole);
@@ -45,10 +49,12 @@ const AdminLayout = ({children}: any) => {
     },
     {
       id: 2,
-      title: 'Account',
+      title: 'ACCOUNT',
       subNavs: [ 
-        {"id": 21, "name": "Accounts", "link": "/Administration/Accounts"}, 
-        {"id": 22, "name": "name2", "link": "/Administration/link22"}, 
+        {"id": 21, "name": "Account Names", "link": "/Administration/AccountNames"}, 
+        {"id": 22, "name": "Create Acc Names", "link": "/Administration/NewAccountName"}, 
+        {"id": 23, "name": "Accounts Users", "link": "/Administration/Accounts"}, 
+        {"id": 24, "name": "Create Account", "link": "/Administration/NewAccount"}, 
       ]
     },
     {
@@ -59,7 +65,16 @@ const AdminLayout = ({children}: any) => {
 
   ];
 
-  
+  const globalSearch = () => {
+    const dataSource: any = []
+    const filteredData = dataSource.filter((value: any) => {
+        return (
+            value.name.toLowerCase().includes(value.toLowerCase()) //||
+        );
+    })
+    setData(filteredData)
+    console.log("searching ...")
+}
 
 
   return (  

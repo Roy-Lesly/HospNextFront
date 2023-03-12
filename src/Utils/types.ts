@@ -14,6 +14,16 @@ export interface DataProps {
     [key: string]: string | boolean | number | null | any | React.ReactElement
 }
 
+export interface StoreProps {
+    user: AccountProps | null,
+    updatePasswordUserId: number | null
+}
+
+export interface StoreProviderProps {
+    state: StoreProps,
+    dispatch: (arg: ActionProps) => void
+}
+
 export interface CustomAxiosError extends Omit<AxiosError, 'response'> {
     response?: {
         data: { 
@@ -21,6 +31,11 @@ export interface CustomAxiosError extends Omit<AxiosError, 'response'> {
             name?: string
         }
     }
+}
+
+export interface AccountNameProps {
+    id: number
+    name: string
 }
 
 export interface AuthTokenType {

@@ -28,7 +28,8 @@ const Login: FC = () => {
     const onSubmit = async (values: DataProps) => {
         setLoading(true)
         console.log(values)
-        const response = await axiosRequest<LoginDataProps>({
+        // const response = await axiosRequest<LoginDataProps>({
+        const response = await axiosRequest({
             method: "post",
             url: LoginUrl,
             payload: values,

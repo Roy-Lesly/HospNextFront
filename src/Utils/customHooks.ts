@@ -1,11 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
 import { tokenName, userName, userIsAdmin, userDept, userRole } from '../Utils/data';
 
-import { authHandler, getAllAccounts,
+import { authHandler, getAllAccountNames, getAllAccounts,
 } from "./functions"
 import { store } from "./store"
-import { ActionTypes, AuthProps, AccountProps } from "./types"
-
+import { ActionTypes, AuthProps, AccountProps, AccountNameProps } from "./types"
 
 
 export const useAuthHook = async (
@@ -33,7 +32,8 @@ export const useAuthHook = async (
 }
 
 export const useIsLoggedIn = async (
-    { successCallBack, errorCallBack }: IsLoggedInProps) => {
+    // { successCallBack, errorCallBack }: IsLoggedInProps) => {
+    { successCallBack, errorCallBack }: any) => {
     useEffect(() => {
         const Check = async () => {
             const accessToken = localStorage.getItem(tokenName)
@@ -83,5 +83,15 @@ export const useGetAllAccounts = (
 
     useEffect(() => {
         getAllAccounts(setAllAccounts, setFetching)
+    }, [])
+}
+
+export const useGetAllAccountNames = (
+    setAllAccountNames: (data: AccountNameProps[]) => void,
+    setFetching: (val: boolean) => void
+) => {
+
+    useEffect(() => {
+        getAllAccountNames(setAllAccountNames, setFetching)
     }, [])
 }

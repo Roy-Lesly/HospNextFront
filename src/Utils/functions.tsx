@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { notification } from "antd"
 import Axios, { AxiosResponse } from "axios";
-import { AccountUrl, MeUrl } from './Config';
+import { AccountNameUrl, AccountUrl, MeUrl } from './Config';
 import { tokenName, userName, userRole, userIsAdmin } from "./data"
-import { AuthTokenType, CustomAxiosError, AccountProps, DataProps, AccountProps } from './types';
+import { AuthTokenType, CustomAxiosError, AccountProps, DataProps, AccountNameProps } from './types';
 
 export const logout = () => {
     localStorage.removeItem(tokenName)
@@ -23,7 +23,8 @@ export const getAuthToken = (): AuthTokenType | null => {
 }
 
 export const authHandler = async (): Promise<AccountProps | null> => {
-    const response = await axiosRequest<UserType>({ url: MeUrl, hasAuth: true, showError: false })
+    // const response = await axiosRequest<T>({ url: MeUrl, hasAuth: true, showError: false })
+    const response = await axiosRequest({ url: MeUrl, hasAuth: true, showError: false })
     if (response) {
         return response.data
     }
@@ -56,7 +57,7 @@ export const axiosRequest = async ({
     file = false,
     params = false,
     errorObject,
-}: AxiosRequestProps): Promise<AxiosResponse<T> | null> => {
+}: AxiosRequestProps): Promise<AxiosResponse | null> => {
 
     let headers = hasAuth ? getAuthToken() : {}
     if (file) {
@@ -76,13 +77,14 @@ export const axiosRequest = async ({
         headers: { ...headers }
     }).catch(
         (e: CustomAxiosError) => {
+            console.log(e.response?.data)
             if (!showError) return
             notification.error({
                 message: errorObject ? errorObject.message : "Operation Error",
                 description: errorObject?.description ? errorObject.description : e.response?.data.error ? e.response?.data.error : e.response?.data.name
             })
         }
-    ) as AxiosResponse<T>
+    ) as AxiosResponse
 
     if (response) { 
         return response
@@ -96,15 +98,13 @@ export const getAllAccounts = async (
     setFetching: (val: boolean) => void
 ) => {
 
-    const response = await axiosRequest<{ results: AccountProps[] }>({
+    const response = await axiosRequest({
         url: AccountUrl,
         hasAuth: true,
         showError: false,
     })
     if (response) {
-        console.log(response.data)
-        console.log(response.data.results)
-        const data = response.data.results
+        const data = response.data
         // const data_edit = data.map(item => ({
         //     ...item,
         //     groupInfo: item.group?.name,
@@ -114,6 +114,24 @@ export const getAllAccounts = async (
         // }))
         setAllAcounts(data)
         setFetching(false)
-        console.log("Data-Inventory:   ", data)
+        console.log("Data-Account:   ", data)
+    }
+}
+
+export const getAllAccountNames = async (
+    setAllAcounts: (data: AccountNameProps[]) => void,
+    setFetching: (val: boolean) => void
+) => {
+
+    const response = await axiosRequest({
+        url: AccountNameUrl,
+        hasAuth: true,
+        showError: false,
+    })
+    if (response) {
+        const data = response.data
+        setAllAcounts(data)
+        setFetching(false)
+        console.log("Data-Account-Name:   ", data)
     }
 }

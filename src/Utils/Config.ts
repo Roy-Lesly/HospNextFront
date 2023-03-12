@@ -1,14 +1,14 @@
 export const DevUrl = "http://127.0.0.1:3000"
 export const ProdUrl = "http://127.0.0.1:3000"
 const BaseUrl = "http://127.0.0.1:8000/api/"
-// const BaseUrl = "http://127.0.0.1:80/"
+// const BaseUrl = "http://192.168.0.103:80/api/"
 // const BaseUrl = "http://192.168.100.13:8000/api/"
 
 export const LoginUrl = BaseUrl + "users/login";
 export const MeUrl = BaseUrl + "users/me";
 export const AccountUrl = BaseUrl + "users/account";
 // export const GetAccountUrl = BaseUrl + "users/account";
-export const AccountNameUrl = BaseUrl + "users/account";
+export const AccountNameUrl = BaseUrl + "users/accountname";
 export const UpdatePasswordUrl = BaseUrl + "users/update-account-password";
 // export const UsersUrl = BaseUrl + "user/users";
 // export const UserActivitiesUrl = BaseUrl + "user/activities-log";

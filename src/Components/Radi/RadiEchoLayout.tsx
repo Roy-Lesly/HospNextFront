@@ -1,9 +1,8 @@
 import React, {useState} from 'react'
 import { useRouter } from 'next/router'
 import { useIsLoggedIn } from '@/Utils/customHooks'
+import { UserOutlined, NotificationOutlined, UserAddOutlined, LaptopOutlined } from '@ant-design/icons'
 import Layout from '../Layout'
-import type { MenuProps } from 'antd';
-import { LaptopOutlined, NotificationOutlined, UserOutlined, UserAddOutlined, UserDeleteOutlined,  } from '@ant-design/icons';
 import CustomTable from '@/Components/Table/CustomTable';
 import { COLUMNS_ADMIN } from '@/Components/Table/Columns';
 
@@ -16,7 +15,7 @@ const RadiEchoLayout = ({children}: any) => {
   const [userRole, setUserRole] = useState(null)
   const [userIsAdmin, setUserIsAdmin] = useState(false)
   useIsLoggedIn({
-    successCallBack: (username, dept_name, userrole, is_admin) => {
+    successCallBack: (username: any, dept_name: any, userrole: any, is_admin: any) => {
       setUserName(username);
       setDeptName(dept_name);
       setUserRole(userrole);
